@@ -79,10 +79,10 @@ div.bg-light {
 
 /* ── Card ──────────────────────────────────────────────────────────────────── */
 .end-user-nano .card {
-  background: var(--vc-card-bg);
-  border: 1px solid var(--vc-border);
-  border-radius: var(--vc-radius-card);
-  color: var(--vc-text);
+  background-color: var(--vc-card-bg) !important;
+  border: 1px solid var(--vc-border) !important;
+  border-radius: var(--vc-radius-card) !important;
+  color: var(--vc-text) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -139,13 +139,13 @@ div.bg-light {
 }
 
 /* When the label floats up (focused or filled), Bootstrap recolours it to a
-   translucent *dark* body colour — unreadable on the dark input. This selector
-   out-specifies Bootstrap's own `.form-floating > .form-control:focus ~ label`
-   (0,4,1 > 0,3,1) to restore a readable muted colour at full opacity. */
+   translucent *dark* body colour — unreadable on the dark input. Force a
+   high-contrast colour at full opacity (the floated label is scaled to 85%, so a
+   muted tone reads too faint). !important guarantees it beats Bootstrap. */
 .end-user-nano .form-floating > .form-control:focus ~ label,
 .end-user-nano .form-floating > .form-control:not(:placeholder-shown) ~ label {
-  color: var(--vc-text-muted);
-  opacity: 1;
+  color: var(--vc-text) !important;
+  opacity: 1 !important;
 }
 
 /* Bootstrap 5.2+ draws a background notch behind the floated label — match it
