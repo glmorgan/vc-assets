@@ -1,0 +1,186 @@
+/* ══════════════════════════════════════════════════════════════════════════
+ * VoiceCue — DaVinci sign-on flow theme
+ *
+ * Restyles the Bootstrap sign-on template to match the VoiceCue app, in both
+ * light and dark mode. Paste into the DaVinci flow's CSS.
+ *
+ * THEMING: the app passes the resolved theme on the authorize URL (?theme=dark
+ * |light). Apply it to the flow's root element, e.g.:
+ *
+ *     <div class="end-user-nano theme-{{theme}}">   (theme-light | theme-dark)
+ *   or, if you control <html>:
+ *     <html data-theme="{{theme}}">
+ *
+ * Dark is the default; `theme-light` / [data-theme="light"] switches to light.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ── Tokens: theme-independent ─────────────────────────────────────────────── */
+:root {
+  --vc-font: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --vc-brand-gradient: linear-gradient(120deg, #8B5CF6 0%, #6366F1 45%, #3B82F6 100%);
+  --vc-radius-card: 16px;
+  --vc-radius-input: 12px;
+  --vc-radius-btn: 14px;
+
+  /* Dark (default) */
+  --vc-bg: #121215;
+  --vc-glow: radial-gradient(60% 50% at 50% 0%, rgba(124, 58, 237, 0.16) 0%, transparent 70%);
+  --vc-card-bg: #1e1e22;
+  --vc-text: #e4e1e6;
+  --vc-text-muted: #c4c5ce;
+  --vc-border: #44464e;
+  --vc-input-bg: #282830;
+  --vc-accent: #a5b4fc;
+  --vc-accent-ring: rgba(165, 180, 252, 0.35);
+  --vc-link: #a5b4fc;
+  --vc-link-hover: #c7d2fe;
+  --vc-danger: #ffb4ab;
+  --vc-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.30);
+  --vc-shadow-sm: 0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.30);
+}
+
+/* ── Light overrides ───────────────────────────────────────────────────────── */
+[data-theme="light"],
+.theme-light {
+  --vc-bg: #f6f6fa;
+  --vc-glow: radial-gradient(60% 50% at 50% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+  --vc-card-bg: #ffffff;
+  --vc-text: #1a1a1e;
+  --vc-text-muted: #44464f;
+  --vc-border: #c4c5d0;
+  --vc-input-bg: #f2f2f7;
+  --vc-accent: #4f46e5;
+  --vc-accent-ring: rgba(79, 70, 229, 0.25);
+  --vc-link: #4f46e5;
+  --vc-link-hover: #4338ca;
+  --vc-danger: #ba1a1a;
+  --vc-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.10);
+  --vc-shadow-sm: 0 2px 6px 2px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Page ──────────────────────────────────────────────────────────────────── */
+.end-user-nano {
+  font-family: var(--vc-font);
+  color: var(--vc-text);
+  background: var(--vc-bg);
+}
+
+/* .bg-light is the full-screen backdrop — Bootstrap sets it !important */
+.end-user-nano .bg-light {
+  background-color: var(--vc-bg) !important;
+  background-image: var(--vc-glow);
+  color: var(--vc-text);
+}
+
+/* ── Card ──────────────────────────────────────────────────────────────────── */
+.end-user-nano .card {
+  background: var(--vc-card-bg);
+  border: 1px solid var(--vc-border);
+  border-radius: var(--vc-radius-card);
+  color: var(--vc-text);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.end-user-nano .card.shadow,
+.end-user-nano .shadow {
+  box-shadow: var(--vc-shadow) !important;
+}
+
+.end-user-nano .companyLogo {
+  max-height: 44px;
+  width: auto;
+}
+
+/* ── Title + copy ──────────────────────────────────────────────────────────── */
+.end-user-nano #title {
+  font-family: var(--vc-font);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--vc-text);
+}
+
+.end-user-nano .text-muted {
+  color: var(--vc-text-muted) !important;
+}
+
+.end-user-nano .text-danger {
+  color: var(--vc-danger) !important;
+}
+
+/* ── Inputs (floating labels) ──────────────────────────────────────────────── */
+.end-user-nano .form-control {
+  background-color: var(--vc-input-bg);
+  border: 1px solid var(--vc-border);
+  border-radius: var(--vc-radius-input);
+  color: var(--vc-text);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.end-user-nano .form-control:focus {
+  background-color: var(--vc-input-bg);
+  border-color: var(--vc-accent);
+  box-shadow: 0 0 0 3px var(--vc-accent-ring);
+  color: var(--vc-text);
+}
+
+.end-user-nano .form-control::placeholder {
+  color: transparent;
+}
+
+.end-user-nano .form-floating > label {
+  color: var(--vc-text-muted);
+  padding: 1rem 0.9rem;
+}
+
+/* Bootstrap 5.2+ draws a background notch behind the floated label — match it
+   to the input so it doesn't flash the body colour. */
+.end-user-nano .form-floating > label::after {
+  background-color: var(--vc-input-bg) !important;
+}
+
+/* Keep autofilled inputs on-theme (browsers force a light background). */
+.end-user-nano .form-control:-webkit-autofill,
+.end-user-nano .form-control:-webkit-autofill:hover,
+.end-user-nano .form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--vc-text);
+  -webkit-box-shadow: 0 0 0 1000px var(--vc-input-bg) inset;
+  caret-color: var(--vc-text);
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────────────── */
+.end-user-nano .btn-primary {
+  background: var(--vc-brand-gradient);
+  border: none;
+  border-radius: var(--vc-radius-btn);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
+  box-shadow: var(--vc-shadow-sm);
+  transition: filter 150ms ease, box-shadow 150ms ease;
+}
+
+.end-user-nano .btn-primary:hover,
+.end-user-nano .btn-primary:focus {
+  filter: brightness(1.06);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--vc-accent-ring);
+}
+
+.end-user-nano .btn-primary:active {
+  filter: brightness(0.97);
+}
+
+.end-user-nano .btn-link {
+  color: var(--vc-link);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.end-user-nano .btn-link:hover,
+.end-user-nano .btn-link:focus {
+  color: var(--vc-link-hover);
+  text-decoration: underline;
+}
