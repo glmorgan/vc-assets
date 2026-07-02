@@ -68,10 +68,11 @@
   background: var(--vc-bg);
 }
 
-/* Full-screen backdrop. Target the element directly (`div.bg-light`) so it works
-   with or without the .end-user-nano wrapper, and out-specify Bootstrap's own
-   `.bg-light { …!important }` (0,1,1 > 0,1,0) so it wins regardless of load order. */
-div.bg-light {
+/* Full-screen backdrop. DaVinci ships a *scoped* `.end-user-nano .bg-light`
+   (specificity 0,2,0) carrying Bootstrap's light colour with !important, so a bare
+   `.bg-light`/`div.bg-light` loses to it. Match its scope and add the `div`
+   qualifier to reach 0,2,1 (> 0,2,0) and win regardless of load order. */
+.end-user-nano div.bg-light {
   background-color: var(--vc-bg) !important;
   background-image: var(--vc-glow) !important;
   color: var(--vc-text);
