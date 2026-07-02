@@ -16,8 +16,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
 
-/* ── Tokens: theme-independent ─────────────────────────────────────────────── */
-:root {
+/* ── Tokens: theme-independent + dark defaults ─────────────────────────────── */
+:root,
+.theme-dark {
   --vc-font: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --vc-brand-gradient: linear-gradient(120deg, #8B5CF6 0%, #6366F1 45%, #3B82F6 100%);
   --vc-radius-card: 16px;
@@ -115,18 +116,18 @@ div.bg-light {
 
 /* ── Inputs (floating labels) ──────────────────────────────────────────────── */
 .end-user-nano .form-control {
-  background-color: var(--vc-input-bg);
-  border: 1px solid var(--vc-border);
-  border-radius: var(--vc-radius-input);
-  color: var(--vc-text);
+  background-color: var(--vc-input-bg) !important;
+  border: 1px solid var(--vc-border) !important;
+  border-radius: var(--vc-radius-input) !important;
+  color: var(--vc-text) !important;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .end-user-nano .form-control:focus {
-  background-color: var(--vc-input-bg);
-  border-color: var(--vc-accent);
-  box-shadow: 0 0 0 3px var(--vc-accent-ring);
-  color: var(--vc-text);
+  background-color: var(--vc-input-bg) !important;
+  border-color: var(--vc-accent) !important;
+  box-shadow: 0 0 0 3px var(--vc-accent-ring) !important;
+  color: var(--vc-text) !important;
 }
 
 .end-user-nano .form-control::placeholder {
@@ -161,6 +162,18 @@ div.bg-light {
   -webkit-text-fill-color: var(--vc-text);
   -webkit-box-shadow: 0 0 0 1000px var(--vc-input-bg) inset;
   caret-color: var(--vc-text);
+}
+
+/* Password show/hide toggle — the mdi icon button sitting inside the field. */
+.end-user-nano .form-floating .btn {
+  color: var(--vc-text-muted);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.end-user-nano .form-floating .btn:hover {
+  color: var(--vc-text);
 }
 
 /* ── Buttons ───────────────────────────────────────────────────────────────── */
