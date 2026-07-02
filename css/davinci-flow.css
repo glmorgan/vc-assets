@@ -67,11 +67,14 @@
   background: var(--vc-bg);
 }
 
-/* .bg-light is the full-screen backdrop — Bootstrap sets it !important */
-.end-user-nano .bg-light {
+/* Full-screen backdrop. Target the element directly (`div.bg-light`) so it works
+   with or without the .end-user-nano wrapper, and out-specify Bootstrap's own
+   `.bg-light { …!important }` (0,1,1 > 0,1,0) so it wins regardless of load order. */
+div.bg-light {
   background-color: var(--vc-bg) !important;
-  background-image: var(--vc-glow);
+  background-image: var(--vc-glow) !important;
   color: var(--vc-text);
+  font-family: var(--vc-font);
 }
 
 /* ── Card ──────────────────────────────────────────────────────────────────── */
@@ -133,6 +136,16 @@
 .end-user-nano .form-floating > label {
   color: var(--vc-text-muted);
   padding: 1rem 0.9rem;
+}
+
+/* When the label floats up (focused or filled), Bootstrap recolours it to a
+   translucent *dark* body colour — unreadable on the dark input. This selector
+   out-specifies Bootstrap's own `.form-floating > .form-control:focus ~ label`
+   (0,4,1 > 0,3,1) to restore a readable muted colour at full opacity. */
+.end-user-nano .form-floating > .form-control:focus ~ label,
+.end-user-nano .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: var(--vc-text-muted);
+  opacity: 1;
 }
 
 /* Bootstrap 5.2+ draws a background notch behind the floated label — match it
