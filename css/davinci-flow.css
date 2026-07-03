@@ -87,7 +87,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 10%;
   height: 200px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='200' viewBox='0 0 1440 200' preserveAspectRatio='none'%3E%3Cpath d='M0,100 C120,30 240,170 360,100 C480,30 600,170 720,100 C840,30 960,170 1080,100 C1200,30 1320,170 1440,100' fill='none' stroke='%238b5cf6' stroke-width='2.5'/%3E%3Cpath d='M0,120 C160,60 320,180 480,120 C640,60 800,180 960,120 C1120,60 1280,180 1440,120' fill='none' stroke='%233b82f6' stroke-width='2'/%3E%3C/svg%3E") no-repeat bottom / 100% 100%;
   opacity: 0.35;
